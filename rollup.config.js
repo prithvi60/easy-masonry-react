@@ -2,7 +2,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
 import dts from 'rollup-plugin-dts'
-
+import css from "rollup-plugin-import-css";
 //NEW
 import terser from '@rollup/plugin-terser'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
@@ -21,6 +21,7 @@ export default [
     ],
     plugins: [
       // NEW
+      css(),
       typescript(),
       peerDepsExternal(),
 

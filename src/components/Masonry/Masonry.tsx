@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import "../index.css";
+import "./index.css";
 const IMG = [
   {
     src: "https://ik.imagekit.io/webibee/Agency/img%201.jpg",

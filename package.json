@@ -1,6 +1,6 @@
 {
   "name": "@webibee/easy-masonry-react",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "This is test button made for a test",
   "main": "dist/cjs/index.js",
   "files": [
@@ -33,5 +33,8 @@
   },
   "peerDependencies": {
     "react": "^18.0.0"
+  },
+  "dependencies": {
+    "rollup-plugin-import-css": "^3.5.0"
   }
 }
