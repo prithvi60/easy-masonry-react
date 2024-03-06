@@ -1,15 +1,19 @@
-import React, { FC, ReactNode } from "react"
+import React, { FC, ReactNode } from "react";
 
-interface Props{
-    children: ReactNode | ReactNode[]
+interface Props {
+  children: ReactNode | ReactNode[];
 }
 
-const Button:FC<Props> = ({children}) => {
+const Button: FC<Props> = ({ children }) => {
   return (
-    <button style={{
-        padding: '1em'
-    }} >{children}</button>
-  )
-}
+    <button
+      style={{
+        padding: "1em",
+      }}
+    >
+      {children}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
