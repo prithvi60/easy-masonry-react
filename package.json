@@ -1,7 +1,7 @@
 {
-  "name": "test-button-muk-dev",
-  "version": "1.0.2",
-  "description": "This is test button made for a tutorial",
+  "name": "@webibee/easy-masonry-react",
+  "version": "1.0.4",
+  "description": "This is test button made for a test",
   "main": "dist/cjs/index.js",
   "files": [
     "dist"
