@@ -1,7 +1,7 @@
 {
   "name": "@webibee/easy-masonry-react",
-  "version": "1.0.6",
-  "description": "This is test button made for a test",
+  "version": "1.0.7",
+  "description":  "The @webibee/easy-masonry-react package is a React component that simplifies the creation of masonry layouts.This package is likely to be useful for developers who want to create responsive and dynamic layouts for their React applications.",
   "main": "dist/cjs/index.js",
   "files": [
     "dist"
@@ -10,14 +10,26 @@
   "scripts": {
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
-  "author": "MUK-Dev",
+  "author":  {
+    "name": "Webibee",
+    "email": "support@webibee.com"
+    },
   "license": "MIT",
   "type": "module",
   "keywords": [
-    "tutorial",
-    "button",
-    "test"
-  ],
+    "Masonry",
+    "React",
+    "responsive",
+    "grid",
+    "react component",
+    "slider",
+    "marquee",
+    "carousel"
+    ],
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/prithvi60/easy-masonry-react.git"
+    },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-node-resolve": "^15.1.0",
