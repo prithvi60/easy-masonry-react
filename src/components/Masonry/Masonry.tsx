@@ -1,33 +1,39 @@
-import React, { FC, JSXElementConstructor, ReactElement, ReactNode, useEffect, useState } from "react";
+import React, {
+  FC,
+  useEffect,
+  useState,
+} from "react";
 import "./index.css";
 
 interface Props {
   // children: ReactNode | ReactNode[];
-  // children : ReactElement<any, 
+  // children : ReactElement<any,
   // string | JSXElementConstructor<any>>
-  children : any
-  gutter_bottom: String,
-  marquee : Boolean,
-  columnsCount: Number,
-  animateCount : String,
-  speed: String,
-  height: String,
-  hoverToStop : Boolean,
-  width : Number
+  // gutter_bottom: String,
+  // animateCount : String,
+  children: any;
+  animation?: Boolean;
+  columnCount?: {
+    [key: number]: Number;
+  };
+  speed?: String;
+  height: String;
+  stopOnHover?: Boolean;
+  width?: Number;
 }
 
-const Masonry: FC<Props> = ({ children,
-  gutter_bottom,
-  marquee,
-  columnsCount,
+const Masonry: FC<Props> = ({
+  children,
+  animation,
+  columnCount,
   speed,
-  animateCount,
   height,
-  hoverToStop }) => {
+  stopOnHover,
+}) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [count, setCount] = useState(3);
-  const columnValues = Object.values(columnsCount);
-  const columnKeys = Object.keys(columnsCount);
+  const columnValues = Object.values(Number(columnCount));
+  const columnKeys = Object.keys(Number(columnCount));
 
   useEffect(() => {
     const onChange = () => {
@@ -45,11 +51,11 @@ const Masonry: FC<Props> = ({ children,
       width >= 1440
         ? setCount(4)
         : width >= Number(columnKeys[2])
-        ? setCount(columnValues[2])
+        ? setCount(Number(columnValues[2]))
         : width >= Number(columnKeys[1])
-        ? setCount(columnValues[1])
+        ? setCount(Number(columnValues[1]))
         : width >= Number(columnKeys[0])
-        ? setCount(columnValues[0])
+        ? setCount(Number(columnValues[0]))
         : setCount(1);
     } else {
       setCount(3);
@@ -59,39 +65,33 @@ const Masonry: FC<Props> = ({ children,
   const myStyle = {
     columns: count,
     gap: "30px",
-    marginBottom: `${gutter_bottom && gutter_bottom}`,
-    animationName: `${marquee ? "marquee_v" : ""}`,
+    animationName: `${animation ? "animation_v" : ""}`,
     animationDuration: `${speed ? speed : "20s"}`,
-    animationIterationCount: `${animateCount ? animateCount : "infinite"}`,
+    animationIterationCount: "infinite",
     animationTimingFunction: "linear",
   };
 
-  const bottom = {
-    marginBottom: `${gutter_bottom && gutter_bottom}`,
-    backgroundColor: 'red'
-  };
+  // const bottom = {
+  //   marginBottom: `${gutter_bottom && gutter_bottom}`,
+  // };
   return (
     <section
       className={`w-full ${
-        height === "fill"
-          ? "h-auto"
-          : height === "screen"
-          ? "h-screen"
-          : "h-auto"
+        height === "fill" ? "h-auto" : "h-screen"
       } p-10 overflow-hidden group`}
     >
       <div
         style={myStyle}
-        className={` rounded-xl ${
-          hoverToStop ? "group-hover:paused" : ""
+        className={`${
+          stopOnHover ? "group-hover:paused" : ""
         }  break-inside-avoid`}
       >
-        {React.Children.map(children, child => (
+        {/* {React.Children.map(children, child => (
         <div style={bottom}>{child}</div>
-      ))}
+      ))} */}
+        {children}
       </div>
-      {marquee &&
-        React.cloneElement(children)}
+      {animation && React.cloneElement(children)}
     </section>
   );
 };
