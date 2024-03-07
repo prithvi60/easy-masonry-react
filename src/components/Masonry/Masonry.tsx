@@ -1,37 +1,28 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, ReactNode, useEffect, useState } from "react";
 import "./index.css";
 
 interface Props {
-  // children: ReactNode | ReactNode[];
-  // children : ReactElement<any,
-  // string | JSXElementConstructor<any>>
-  // gutter_bottom: String,
-  // animateCount : String,
-  children: any;
-  animation?: any;
+  children: ReactNode;
+  animation?: boolean;
   columnCount: {
-    [key: number]: any;
+    [key: number]: number;
   };
-  speed?: String;
-  height: String;
-  stopOnHover?: any;
-  width?: Number;
+  speed?: string;
+  height: string;
+  stopOnHover?: boolean;
+  width?: number;
 }
 
 const Masonry: FC<Props> = ({
   children,
-  animation,
+  animation = false,
   columnCount,
-  speed,
-  height,
-  stopOnHover,
+  speed = "20s",
+  height = "screen",
+  stopOnHover = false,
 }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [count, setCount] = useState(3);
-  const columnValues =  Object.values(Number(columnCount))
-  const columnKeys =  Object.keys(Number(columnCount));
-  // const columnValues =  Object.values(columnCount);
-  // const columnKeys =  Object.keys(columnCount);
 
   useEffect(() => {
     const onChange = () => {
@@ -46,32 +37,31 @@ const Masonry: FC<Props> = ({
 
   useEffect(() => {
     if (columnCount) {
+      const columnKeys = Object.keys(columnCount);
+      const columnValues = Object.values(columnCount);
       width >= 1440
         ? setCount(3)
         : width >= parseInt(columnKeys[2])
-        ? setCount(parseInt(columnValues[2]))
+        ? setCount(columnValues[2])
         : width >= parseInt(columnKeys[1])
-        ? setCount(parseInt(columnValues[1]))
+        ? setCount(columnValues[1])
         : width >= parseInt(columnKeys[0])
-        ? setCount(parseInt(columnValues[0]))
+        ? setCount(columnValues[0])
         : setCount(1);
     } else {
       setCount(3);
     }
-  }, [width, count, columnKeys, columnValues]);
+  }, [width, columnCount]);
 
   const myStyle = {
     columns: count,
     gap: "30px",
-    animationName: `${animation ? "animation_v": ""}`,
-    animationDuration: `${speed  ? speed : "20s"}`,
+    animationName: animation ? "animation_v" : "",
+    animationDuration: speed,
     animationIterationCount: "infinite",
     animationTimingFunction: "linear",
   };
-
-  // const bottom = {
-  //   marginBottom: `${gutter_bottom && gutter_bottom}`,
-  // };
+  // console.log("props", animation, columnCount, speed, height, stopOnHover);
   return (
     <section
       className={`w-full ${
@@ -84,12 +74,18 @@ const Masonry: FC<Props> = ({
           stopOnHover ? "group-hover:paused" : ""
         }  break-inside-avoid`}
       >
-        {/* {React.Children.map(children, child => (
-        <div style={bottom}>{child}</div>
-      ))} */}
         {children}
       </div>
-      {animation && React.cloneElement(children)}
+      {animation && (
+        <div
+          style={myStyle}
+          className={`${
+            stopOnHover ? "group-hover:paused" : ""
+          }  break-inside-avoid`}
+        >
+          {children}
+        </div>
+      )}
     </section>
   );
 };

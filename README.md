@@ -1,51 +1,33 @@
-This is a boilerplate to create an NPM package for one or more ReactJS custom hooks and components. I hope you find it helpful.
+This is a masonry component that can be use to render any set of elements in Masonry fashion.
 
 ## 🫶 Usage
 
+Example array of images
+  ```
 const IMG = [
   {
-    src: "https://ik.imagekit.io/webibee/Agency/img%201.jpg",
-    ratio: "aspect-square",
+    src: "https://picsum.photos/id/1/500/500"
+  
   },
   {
-    src: "https://ik.imagekit.io/webibee/Agency/img%202.jpg",
-    ratio: "aspect-square",
+    src: "https://picsum.photos/id/2/500/500"
+  
   },
   {
-    src: "https://ik.imagekit.io/webibee/Agency/img%203.jpg",
-    ratio: "aspect-square",
+    src: "https://picsum.photos/id/3/500/500"
   },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%204.jpg",
-    ratio: "aspect-box",
+    {
+    src: "https://picsum.photos/id/4/500/500"
   },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%205.jpg",
-    ratio: "aspect-square",
+    {
+    src: "https://picsum.photos/id/5/500/500"
   },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%202.jpg",
-    ratio: "aspect-square",
-  },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%205.jpg",
-    ratio: "aspect-square",
-  },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%204.jpg",
-    ratio: "aspect-box",
-  },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%205.jpg",
-    ratio: "aspect-square",
-  },
-  {
-    src: "https://ik.imagekit.io/webibee/Agency/img%201.jpg",
-    ratio: "aspect-square",
+    {
+    src: "https://picsum.photos/id/6/500/500"
   },
 ];
-
-
+  ```
+Add the elements for Masonry as children mentioned below
   ```
 <Masonry>
       {IMG.map((item, idx) => (
@@ -58,3 +40,17 @@ const IMG = [
           ))}
 </Masonry>
   ```
+
+  
+### Props
+
+| Prop                     | Options                  | Desc                                                                                                                                               ß                                                                                                                       |
+| ------------------------ | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `height`                 | `screen` `fill`              | **REQUIRED:** default is screen .                                                                                                                                                                                                    |
+| `columnCount`               | `{350:1,900:2}`            | **REQUIRED** breakpoints and the number of columns.                                                                                                                      |
+| `speed`               | `20s`            | default is 20s.                                                                                                                                                                         |
+| `stopOnHover`               | `false` `true`           | default is false.  
+| `animation`               | `false` `true`           | default is false.                                                                                                                                                                                               |
+     
+     ## License
+MIT. © 2024 Webibee
