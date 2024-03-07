@@ -1,8 +1,4 @@
-import React, {
-  FC,
-  useEffect,
-  useState,
-} from "react";
+import React, { FC, useEffect, useState } from "react";
 import "./index.css";
 
 interface Props {
@@ -12,13 +8,13 @@ interface Props {
   // gutter_bottom: String,
   // animateCount : String,
   children: any;
-  animation?: Boolean;
-  columnCount?: {
-    [key: number]: Number;
+  animation?: any;
+  columnCount: {
+    [key: number]: any;
   };
   speed?: String;
   height: String;
-  stopOnHover?: Boolean;
+  stopOnHover?: any;
   width?: Number;
 }
 
@@ -32,8 +28,10 @@ const Masonry: FC<Props> = ({
 }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [count, setCount] = useState(3);
-  const columnValues = Object.values(Number(columnCount));
-  const columnKeys = Object.keys(Number(columnCount));
+  const columnValues =  Object.values(Number(columnCount))
+  const columnKeys =  Object.keys(Number(columnCount));
+  // const columnValues =  Object.values(columnCount);
+  // const columnKeys =  Object.keys(columnCount);
 
   useEffect(() => {
     const onChange = () => {
@@ -47,15 +45,15 @@ const Masonry: FC<Props> = ({
   }, []);
 
   useEffect(() => {
-    if (columnKeys) {
+    if (columnCount) {
       width >= 1440
-        ? setCount(4)
-        : width >= Number(columnKeys[2])
-        ? setCount(Number(columnValues[2]))
-        : width >= Number(columnKeys[1])
-        ? setCount(Number(columnValues[1]))
-        : width >= Number(columnKeys[0])
-        ? setCount(Number(columnValues[0]))
+        ? setCount(3)
+        : width >= parseInt(columnKeys[2])
+        ? setCount(parseInt(columnValues[2]))
+        : width >= parseInt(columnKeys[1])
+        ? setCount(parseInt(columnValues[1]))
+        : width >= parseInt(columnKeys[0])
+        ? setCount(parseInt(columnValues[0]))
         : setCount(1);
     } else {
       setCount(3);
@@ -65,8 +63,8 @@ const Masonry: FC<Props> = ({
   const myStyle = {
     columns: count,
     gap: "30px",
-    animationName: `${animation ? "animation_v" : ""}`,
-    animationDuration: `${speed ? speed : "20s"}`,
+    animationName: `${animation ? "animation_v": ""}`,
+    animationDuration: `${speed  ? speed : "20s"}`,
     animationIterationCount: "infinite",
     animationTimingFunction: "linear",
   };

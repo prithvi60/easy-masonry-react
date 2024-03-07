@@ -571,10 +571,6 @@ video {
   border-radius: 0.375rem;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .object-cover {
   object-fit: cover;
 }
