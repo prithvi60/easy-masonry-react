@@ -39,9 +39,7 @@ const Masonry: FC<Props> = ({
     if (columnCount) {
       const columnKeys = Object.keys(columnCount);
       const columnValues = Object.values(columnCount);
-      width >= 1440
-        ? setCount(3)
-        : width >= parseInt(columnKeys[2])
+      width >= parseInt(columnKeys[2])
         ? setCount(columnValues[2])
         : width >= parseInt(columnKeys[1])
         ? setCount(columnValues[1])
@@ -56,23 +54,28 @@ const Masonry: FC<Props> = ({
   const myStyle = {
     columns: count,
     gap: "30px",
-    animationName: animation ? "animation_v" : "",
+    animationName: animation ? "marquee_v" : "",
     animationDuration: speed,
     animationIterationCount: "infinite",
     animationTimingFunction: "linear",
   };
-  // console.log("props", animation, columnCount, speed, height, stopOnHover);
   return (
     <section
-      className={`w-full ${
-        height === "fill" ? "h-auto" : "h-screen"
-      } p-10 overflow-hidden group`}
+      style={{
+        height:
+          height === "fill"
+            ? "auto"
+            : height === "screen"
+            ? "100vh"
+            : "100vh",
+      }}
+      className="w-full p-10 overflow-hidden group"
     >
       <div
         style={myStyle}
         className={`${
           stopOnHover ? "group-hover:paused" : ""
-        }  break-inside-avoid`}
+        }  break-inside-avoid mb-5`}
       >
         {children}
       </div>
@@ -81,7 +84,7 @@ const Masonry: FC<Props> = ({
           style={myStyle}
           className={`${
             stopOnHover ? "group-hover:paused" : ""
-          }  break-inside-avoid`}
+          }  break-inside-avoid mb-5`}
         >
           {children}
         </div>

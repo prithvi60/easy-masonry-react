@@ -1,6 +1,6 @@
 {
   "name": "@webibee/easy-masonry-react",
-  "version": "2.1.9",
+  "version": "2.2.4",
   "description":  "This React component that simplifies the creation of masonry layouts. This package can be used to create responsive and dynamic layouts for their React applications.",
   "main": "dist/cjs/index.js",
   "files": [
